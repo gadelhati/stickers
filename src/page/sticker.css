@@ -1,0 +1,77 @@
+#root {
+  margin: 0 auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+body {
+    font-family: Arial, sans-serif;
+    color: #FFFFFF;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+article {
+    background-color: #56C4BE;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 433px;
+    width: 326px;
+    z-index: 0;
+}
+header {
+    display: flex;
+    justify-content: flex-end;
+    img {
+        width: 25%;
+    }
+}
+center {
+    img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: 1;
+    }
+}
+footer {
+    padding: .5rem;
+    .character, .team span {
+        border-radius: 5rem 5rem 0rem 5rem;
+        padding-top: .25rem;
+        padding-bottom: .25rem;
+        background-color: #3A8785;
+    }
+    .character {
+        width: 100%;
+        margin-bottom: .25rem;
+        .name {
+            font-size: 1.3rem;
+            font-weight: bold;
+        }
+    }
+    .team span {
+        width: 100%;
+    }
+    .team {
+        display: flex;
+        flex-direction: row;
+        justify-content: stretch;
+        align-items: flex-end;
+        img {
+            height: 1.5rem;
+            width: 10rem;
+            object-fit: cover;
+            object-position: inherit;
+        }
+    }
+    z-index: 3;
+}

@@ -24,5 +24,6 @@
 	PRATA e DOURADA: são os cromos mais valiosos do mercado, com as versões de ouro podendo ser vendidas de R$ 300 a R$ 5.000.
 # Especiais Metalizadas:
 
+taça: https://www.cleanpng.com/png-2026-fifa-world-cup-trophy-gold-logo-z55zo0/
 svg: https://worldvectorlogo.com/pt/logo/panini-logo
 png: https://logospng.org/logo-panini/
