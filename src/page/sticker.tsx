@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { initialCharacter } from '../component/character';
-import cup from '../assets/logo-cup.png';
+import cup from '../assets/logo-cup-white.png';
 import photo from '../assets/photo.png';
 import uniform from '../assets/uniform.png';
 import panini from '../assets/panini-logo.svg';

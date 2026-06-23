@@ -28,7 +28,8 @@ header {
     display: flex;
     justify-content: flex-end;
     img {
-        width: 25%;
+        width: 30%;
+        /* filter: drop-shadow(0 0 2px #ffffff); */
     }
 }
 center {
