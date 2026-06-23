@@ -4,6 +4,7 @@ import cup from '../assets/logo-cup.png';
 import photo from '../assets/photo.png';
 import uniform from '../assets/uniform.png';
 import panini from '../assets/panini-logo.svg';
+import flag from '../assets/flagBrazil.webp';
 import './sticker.css';
 
 export const StickerPage = () => {
@@ -17,14 +18,20 @@ export const StickerPage = () => {
          </center>
 
          <footer>
-            <section className="character">
-               <span className="name">{character.name.toUpperCase()}</span><br />
-               {character.age} | {character.height.toFixed(2).replace('.', ',')}m | {character.weight}kg
+            <section className="player">
+               <span className="character">
+                  <span className="name">{character.name.toUpperCase()}</span><br />
+                  {character.age} | {character.height.toFixed(2).replace('.', ',')}m | {character.weight}kg
+               </span>
+               <span className="country">
+                  <span className="flag"><img src={flag} alt="Flag"/></span>
+                  <span className="code">{character.country.code.toUpperCase()}</span>
+               </span>
             </section>
-            <div className="team">
-               <span>{character.team.name} ({character.country.code})</span>
+            <section className="team">
+               <span>{character.team.name.toUpperCase()} ({character.country.code.toUpperCase()})</span>
                <img src={panini} alt="Panini"/>
-            </div>
+            </section>
          </footer>   
       </article>
    )
