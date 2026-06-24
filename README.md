@@ -30,9 +30,10 @@ png: https://logospng.org/logo-panini/
 
 # ROADMAP
 
-- [ ] Open package: holding it gives a 3D effect to the sticker.
-- [ ] Open package: cliking moves to the next sticker.
-	- [ ] The previous one goes down to the deck and can be glued into the album (red ball).
+- [x] Open package: holding it gives a 3D effect to the sticker.
+- [x] Open package: cliking moves to the next sticker.
+- [ ] Open package
+- [ ] The previous one goes down to the deck and can be glued into the album (red ball).
 - [ ] Each pack contains 6 random cards from all teams.
 - [ ] Gather resources by opening up packages.
 - [ ] I win a pack with stickers specific to the team I beat.
