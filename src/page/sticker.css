@@ -63,18 +63,18 @@ header {
     }
 }
 center {
-    img {
+    svg {
         position: absolute;
-        width: 110%;
+        width: 65%;
         z-index: 1;
     }
     .two {
-        top: -5%;
-        left: -22%;
+        top: 3%;
+        left: 4%;
     }
     .six {
-        top: 12%;
-        left: 10%;
+        top: 22%;
+        left: 30%;
     }
 }
 footer {
