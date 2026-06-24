@@ -48,10 +48,8 @@ export const StickerPage = () => {
             </footer>
          </section>
 
-         <section className="sticker back">
-            <center>
-               <img src={back} alt='Card back image' />
-            </center>
+         <section className="sticker back" style={{ backgroundColor: movement.backgroundColor }}>
+            <img src={back} alt='Card back image' />
          </section>
       </article>
    )
