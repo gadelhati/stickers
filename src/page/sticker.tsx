@@ -27,8 +27,7 @@ export const StickerPage = () => {
 
             <center className="photo">
                <img className="two year" src={two} alt="Two of Year" />
-               <img className="six year" src={two} alt="Two of Year" />
-               <img className="six year" src={six} alt="Six of Year" />
+               <img className="six year" src={two} alt="Six of Year" />
             </center>
 
             <footer>
