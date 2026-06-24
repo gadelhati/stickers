@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { initialCharacter, type Character } from '../component/character';
 import cup from '../assets/logo-cup-white.png';
+import two from '../assets/twoVector.png';
+import six from '../assets/six.svg';
 // import photo from '../assets/photo.png';
 import uniform from '../assets/uniform.png';
 import panini from '../assets/panini-logo.svg';
@@ -24,7 +26,9 @@ export const StickerPage = () => {
             <header><img src={cup} alt="Taça 2026" /></header>
 
             <center className="photo">
-               <img src={uniform} alt="Photo" />
+               <img className="two year" src={two} alt="Two of Year" />
+               <img className="six year" src={two} alt="Two of Year" />
+               <img className="six year" src={six} alt="Six of Year" />
             </center>
 
             <footer>

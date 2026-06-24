@@ -23,6 +23,8 @@ body {
     cursor: pointer;
 }
 .sticker {
+    user-select: none;
+    pointer-events: none;
     position: absolute;
     top: 0;
     left: 0;
@@ -55,19 +57,25 @@ header {
     display: flex;
     justify-content: flex-end;
     img {
-        width: 30%;
+        width: 25%;
         /* filter: drop-shadow(0 0 2px #ffffff); */
     }
 }
 center {
     img {
         position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
+        width: 110%;
+        /* height: 100%; */
+        /* object-fit: cover; */
         z-index: 1;
+    }
+    .two {
+        top: -5%;
+        left: -22%;
+    }
+    .six {
+        top: 12%;
+        left: 10%;
     }
 }
 footer {
