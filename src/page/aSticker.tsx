@@ -9,7 +9,7 @@ import back from '../assets/logo-cup-black.png';
 import './sticker.css';
 import { usePosition } from '../hook/usePosition';
 
-export const StickerPage = ({ id, name, age, height, weight, country, team }: Character): JSX.Element => {
+export const Sticker = ({ id, name, age, height, weight, country, team }: Character): JSX.Element => {
    const { movement } = usePosition();
    const [isFlipped, setIsFlipped] = useState(false);
    const cardStyle = {

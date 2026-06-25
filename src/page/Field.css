@@ -1,0 +1,8 @@
+.field {
+    min-width: 350px;
+    min-height: 450px;
+    border: 2px dashed #888;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

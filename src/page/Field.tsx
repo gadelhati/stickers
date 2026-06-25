@@ -1,5 +1,6 @@
 import type { Character } from "../component/character";
-import { StickerPage } from "./sticker";
+import { Sticker } from "./aSticker";
+import './field.css';
 
 interface FieldProps {
     id: string
@@ -21,7 +22,7 @@ export const Field = ({ id, characters, onCardDrop }: FieldProps) => {
 
     return (
         <div id={id} className="field" onDragOver={dragover} onDrop={dragdrop}>
-            {characters?.map(character => <StickerPage key={character.id} id={character.id} name={character.name} age={character.age} height={character.height} weight={character.weight} country={character.country} team={character.team} />)}
+            {characters?.map(character => <Sticker key={character.id} id={character.id} name={character.name} age={character.age} height={character.height} weight={character.weight} country={character.country} team={character.team} />)}
         </div>
     );
 };

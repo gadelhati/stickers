@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { initialCharacter, type Character } from "../component/character"
 import { Field } from "./Field"
+import './Desk.css'
 
 export const Desk = () => {
     const [fields, setFields] = useState<Record<string, Character[]>>({
