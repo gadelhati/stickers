@@ -69,10 +69,18 @@ center {
     }
     img {
         position: absolute;
-        width: 100%;
+    }
+    .photo {
+        top: -2%;
+        left: 10%;
+        /* width: 40%; */
+        height: 80%;
+        /* object-fit: cover; */
+    }
+    .uniform {
         top: 0;
         left: 0;
-        /* z-index: 1; */
+        width: 100%;
     }
     .two {
         top: 3%;
