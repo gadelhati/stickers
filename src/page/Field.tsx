@@ -1,5 +1,5 @@
 import type { Character } from "../component/character";
-import { Sticker } from "./aSticker";
+import { Sticker } from "./Sticker";
 import './field.css';
 
 interface FieldProps {
