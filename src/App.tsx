@@ -1,8 +1,8 @@
-import { StickerPage } from './page/sticker'
+import { Desk } from './page/desk'
 
 function App() {
 	return (
-		<StickerPage />
+		<Desk />
 	)
 }
 

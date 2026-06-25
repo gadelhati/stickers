@@ -9,7 +9,7 @@ export interface Character {
     weight: number,
     country: Country,
     team: Team,
-    image: string,
+    photo?: string,
 }
 export interface CharacterValidation {
     readonly id: string,
@@ -19,7 +19,7 @@ export interface CharacterValidation {
     readonly weight: string,
     readonly country: Country,
     readonly team: Team,
-    readonly image: string,
+    readonly photo?: string,
 }
 export const initialCharacterValidation: CharacterValidation = {
     id: `^[a-zA-Z0-9]+$`,
@@ -29,7 +29,7 @@ export const initialCharacterValidation: CharacterValidation = {
     weight: `^[0-9]+$`,
     country: initialCountry,
     team: initialTeam,
-    image: `^[a-zA-Z0-9]+$`,
+    photo: `^[a-zA-Z0-9]+$`,
 }
 export const initialCharacter: Character = {
     id: '001',
@@ -39,5 +39,5 @@ export const initialCharacter: Character = {
     weight: 50,
     country: initialCountry,
     team: initialTeam,
-    image: '',
+    photo: '',
 }

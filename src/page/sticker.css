@@ -14,7 +14,7 @@ body {
     align-items: center;
     height: 100vh;
 }
-#card {
+.card {
     position: relative;
     width: 300px;
     height: 400px;
