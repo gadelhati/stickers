@@ -43,3 +43,4 @@ png: https://logospng.org/logo-panini/
 - [ ] A pack with stickers specific to the team is more expensive.
 - [ ] The rarity varies with performance in the championship.
 - [ ] Change sticker.
+- [ ] Task to get a new package.
