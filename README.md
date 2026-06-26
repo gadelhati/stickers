@@ -32,6 +32,7 @@ png: https://logospng.org/logo-panini/
 
 - [x] gives a 3D effect to the sticker.
 - [x] moves to the next sticker.
+- [x] add sticker on the sticker album.
 - [ ] Open package: 
 	- [ ] holding it	-> gives a 3D effect to the sticker.
 	- [ ] cliking 		-> moves to the next sticker.

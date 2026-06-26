@@ -1,4 +1,4 @@
-import { Desk } from './page/desk'
+import { Desk } from './page/Desk'
 
 function App() {
 	return (
