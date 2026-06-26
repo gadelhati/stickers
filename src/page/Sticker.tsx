@@ -6,7 +6,7 @@ import uniform from '../assets/uniform.png';
 import panini from '../assets/panini-logo.svg';
 import flag from '../assets/flagBrazil.webp';
 import back from '../assets/logo-cup-black.png';
-import './Stickera.css';
+import './Sticker.css';
 import { usePosition } from '../hook/usePosition';
 
 export const Sticker = ({ id, name, age, height, weight, country, team }: Character): JSX.Element => {
