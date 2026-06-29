@@ -1,0 +1,211 @@
+/* ═══════════════════════════════════════════════════
+   ALBUM — Livro aberto sobre a mesa
+═══════════════════════════════════════════════════ */
+
+.album-book {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    position: relative;
+
+    /* Sombra do livro sobre a mesa */
+    filter:
+        drop-shadow(0 20px 40px rgba(0,0,0,0.7))
+        drop-shadow(0 4px 8px rgba(0,0,0,0.5));
+
+    border-radius: 3px 8px 8px 3px;
+    transform: translateY(-4px);
+}
+
+/* ── Lombada ─────────────────────────────────── */
+.album-spine {
+    width: 22px;
+    min-height: 100%;
+    background: linear-gradient(180deg,
+        #1a3a6e 0%,
+        #0f2550 20%,
+        #1a3a6e 50%,
+        #0f2550 80%,
+        #1a3a6e 100%
+    );
+    border-radius: 4px 0 0 4px;
+    border-right: 2px solid rgba(0,0,0,0.4);
+    box-shadow:
+        inset -3px 0 6px rgba(0,0,0,0.3),
+        inset 2px 0 4px rgba(255,255,255,0.06);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 0;
+    gap: 8px;
+    overflow: hidden;
+    position: relative;
+    flex-shrink: 0;
+}
+
+.album-spine::before {
+    content: '';
+    position: absolute;
+    top: 0; bottom: 0;
+    left: 4px;
+    width: 1px;
+    background: rgba(255,255,255,0.08);
+}
+
+.album-spine-title {
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    transform: rotate(180deg);
+    font-size: 7px;
+    font-weight: 800;
+    letter-spacing: 0.2em;
+    color: rgba(255,220,80,0.85);
+    text-transform: uppercase;
+}
+
+.album-spine-brand {
+    font-size: 6px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    color: rgba(255,255,255,0.4);
+    text-transform: uppercase;
+}
+
+/* ── Páginas ─────────────────────────────────── */
+.album-page {
+    width: 320px;
+    min-height: 430px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Textura de papel */
+.album-page-inner {
+    position: absolute;
+    inset: 0;
+    /* Papel levemente amarelado com textura */
+    background:
+        /* Fibras do papel */
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E"),
+        linear-gradient(170deg, #faf6ee 0%, #f5f0e4 40%, #ede7d6 100%);
+    padding: 18px 16px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Página esquerda — sombra vira para direita (lombada) */
+.album-page--left {
+    border-radius: 0;
+    border-right: 1px solid rgba(0,0,0,0.08);
+}
+
+.album-page-inner--left {
+    box-shadow:
+        inset -8px 0 16px rgba(0,0,0,0.08),
+        inset 0 0 30px rgba(0,0,0,0.04);
+    border-radius: 0;
+}
+
+/* Página direita — sombra vira para esquerda */
+.album-page--right {
+    border-radius: 0 6px 6px 0;
+    border-left: 1px solid rgba(0,0,0,0.06);
+}
+
+.album-page-inner--right {
+    box-shadow:
+        inset 8px 0 16px rgba(0,0,0,0.07),
+        inset 0 0 30px rgba(0,0,0,0.03);
+    border-radius: 0 6px 6px 0;
+}
+
+/* Linhas de página levíssimas */
+.album-page-inner--right::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+        180deg,
+        transparent 0px,
+        transparent 23px,
+        rgba(0,0,0,0.03) 23px,
+        rgba(0,0,0,0.03) 24px
+    );
+    pointer-events: none;
+}
+
+/* Número de página */
+.album-page-inner--right::after {
+    content: '2';
+    position: absolute;
+    bottom: 10px;
+    right: 14px;
+    font-size: 9px;
+    color: rgba(0,0,0,0.2);
+    font-style: italic;
+}
+.album-page-inner--left::after {
+    content: '1';
+    position: absolute;
+    bottom: 10px;
+    left: 14px;
+    font-size: 9px;
+    color: rgba(0,0,0,0.2);
+    font-style: italic;
+}
+
+/* ── Arte da capa interna (página esquerda) ── */
+.album-cover-art {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 20px;
+}
+
+.album-cover-emblem {
+    font-size: 52px;
+    line-height: 1;
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
+    margin-bottom: 10px;
+}
+
+.album-cover-title {
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.18em;
+    color: #1a3a6e;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.album-cover-year {
+    font-size: 48px;
+    font-weight: 900;
+    color: #1a3a6e;
+    letter-spacing: -0.02em;
+    line-height: 1;
+    text-shadow: 0 2px 0 rgba(0,0,0,0.1);
+}
+
+.album-cover-subtitle {
+    font-size: 8px;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    color: rgba(26,58,110,0.5);
+    text-transform: uppercase;
+    text-align: center;
+}
+
+/* Borda decorativa da capa */
+.album-cover-art::before {
+    content: '';
+    position: absolute;
+    inset: 14px;
+    border: 1.5px solid rgba(26,58,110,0.12);
+    border-radius: 2px;
+    pointer-events: none;
+}

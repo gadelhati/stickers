@@ -1,0 +1,76 @@
+/* ═══════════════════════════════════════════════════
+   ALBUM PAGE — Conteúdo interno da página
+═══════════════════════════════════════════════════ */
+
+.album-page-section {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    height: 100%;
+}
+
+/* ── Cabeçalho da página ─────────────────────── */
+.album-page-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0 0 8px 0;
+    border-bottom: 1.5px solid rgba(26,58,110,0.2);
+    margin-bottom: 2px;
+    position: relative;
+}
+
+/* Faixa colorida decorativa */
+.album-page-header::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 40px;
+    height: 2px;
+    background: linear-gradient(90deg, #1a3a6e, #4a7ad0);
+    border-radius: 1px;
+}
+
+.album-page-header-flag {
+    width: 32px;
+    height: 22px;
+    background: linear-gradient(180deg, #009c3b 33%, #ffdf00 33%, #ffdf00 66%, #002776 66%);
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+    flex-shrink: 0;
+}
+
+.album-page-header-code {
+    font-size: 6px;
+    font-weight: 900;
+    color: white;
+    letter-spacing: 0.05em;
+    text-shadow: 0 0 3px rgba(0,0,0,0.8);
+}
+
+.album-page-header-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+}
+
+.album-page-header-country {
+    font-size: 13px;
+    font-weight: 800;
+    color: #1a3a6e;
+    letter-spacing: 0.02em;
+    line-height: 1;
+    text-transform: uppercase;
+}
+
+.album-page-header-label {
+    font-size: 7px;
+    font-weight: 500;
+    color: rgba(26,58,110,0.45);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}

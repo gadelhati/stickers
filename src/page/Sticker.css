@@ -1,19 +1,7 @@
-#root {
-    margin: 0 auto;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    box-sizing: border-box;
-}
-body {
-    font-family: Arial, sans-serif;
-    color: #DDDDDD;
-    margin: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-}
+/* ═══════════════════════════════════════════════════
+   STICKER — Figurinha 3D com efeito holográfico
+═══════════════════════════════════════════════════ */
+
 .card {
     --card-w: 80px;
     --card-ratio: calc(4 / 3);
@@ -22,9 +10,14 @@ body {
     height: calc(var(--card-w) * var(--card-ratio));
     font-size: calc(var(--card-w) / 18.75);
     transform-style: preserve-3d;
-    transition: transform 0.5s ease-out, box-shadow 0.1s ease-out, background-color 0.1s ease-out;
+    transition:
+        transform 0.5s ease-out,
+        box-shadow 0.1s ease-out,
+        background-color 0.1s ease-out;
     cursor: pointer;
+    border-radius: 5px;
 }
+
 .sticker {
     user-select: none;
     pointer-events: none;
@@ -38,7 +31,10 @@ body {
     flex-direction: column;
     justify-content: space-between;
     box-sizing: border-box;
+    border-radius: 5px;
+    overflow: hidden;
 }
+
 .sticker.front {
     background-color: #56C4BE;
     position: relative;
@@ -47,130 +43,135 @@ body {
     justify-content: space-between;
     z-index: 0;
 }
+
 .sticker.back {
     height: 100%;
     transform: rotateY(180deg);
     justify-content: center;
     align-items: center;
     background-color: #EEEEEE;
-    img {
-        height: 100%;
-    }
+}
+
+.sticker.back img {
+    height: 100%;
 }
 
 header {
     display: flex;
     justify-content: flex-end;
-    img {
-        width: 25%;
-    }
+}
+header img {
+    width: 25%;
 }
 
 center {
-    svg {
-        position: absolute;
-        width: 65%;
-    }
-    img {
-        position: absolute;
-    }
-    .photo {
-        top: 0%;
-        left: 10%;
-        height: 80%;
-    }
-    .uniform {
-        top: 4%;
-        left: 0;
-        width: 100%;
-    }
-    .two {
-        top: 3%;
-        left: 4%;
-    }
-    .six {
-        top: 22%;
-        left: 30%;
-    }
+    position: relative;
+    flex: 1;
+}
+center svg {
+    position: absolute;
+    width: 65%;
+}
+center img {
+    position: absolute;
+}
+center .photo {
+    top: 0%;
+    left: 10%;
+    height: 80%;
+}
+center .uniform {
+    top: 4%;
+    left: 0;
+    width: 100%;
+}
+center .two {
+    top: 3%;
+    left: 4%;
+}
+center .six {
+    top: 22%;
+    left: 30%;
 }
 
 footer {
     padding: 0.5em;
     z-index: 3;
+}
 
-    .character, .team span {
-        border-radius: 5em 5em 0 5em;
-        padding: 0.25em;
-        margin: 0 0.25em;
-        background-color: #3A8785;
-    }
+footer .character,
+footer .team span {
+    border-radius: 5em 5em 0 5em;
+    padding: 0.25em;
+    margin: 0 0.25em;
+    background-color: #3A8785;
+}
 
-    .player {
-        display: flex;
-        flex-direction: row;
-        justify-content: stretch;
-        align-items: flex-end;
+footer .player {
+    display: flex;
+    flex-direction: row;
+    justify-content: stretch;
+    align-items: flex-end;
+}
 
-        .character {
-            width: 100%;
-            margin-bottom: 0.25em;
-            font-size: 0.8em;
+footer .player .character {
+    width: 100%;
+    margin-bottom: 0.25em;
+    font-size: 0.8em;
+}
 
-            .name {
-                font-size: 1.1em;
-                font-weight: bold;
-            }
-        }
+footer .player .character .name {
+    font-size: 1.1em;
+    font-weight: bold;
+}
 
-        .country {
-            width: 18%;
-            color: transparent;
+footer .player .country {
+    width: 18%;
+    color: transparent;
+}
 
-            .code {
-                -webkit-text-stroke: 0.06em #ffffff;
-                letter-spacing: -0.1em;
-                font-size: 2.5em;
-                font-weight: bold;
-                font-family: 'Bebas Neue', sans-serif;
-                writing-mode: vertical-rl;
-                text-orientation: upright;
-            }
+footer .player .country .code {
+    -webkit-text-stroke: 0.06em #ffffff;
+    letter-spacing: -0.1em;
+    font-size: 2.5em;
+    font-weight: bold;
+    font-family: 'Bebas Neue', sans-serif;
+    writing-mode: vertical-rl;
+    text-orientation: upright;
+}
 
-            .flag {
-                height: 2.8em;
-                width: 2.8em;
-                margin: 0 auto;
-                display: inline-block;
-                border: 0.12em solid #ffffff;
-                border-radius: 5em 5em 0 5em;
-                overflow: hidden;
+footer .player .country .flag {
+    height: 2.8em;
+    width: 2.8em;
+    margin: 0 auto;
+    display: inline-block;
+    border: 0.12em solid #ffffff;
+    border-radius: 5em 5em 0 5em;
+    overflow: hidden;
+}
 
-                img {
-                    width: 100%;
-                    height: 100%;
-                    object-fit: cover;
-                }
-            }
-        }
-    }
+footer .player .country .flag img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
 
-    .team {
-        display: flex;
-        flex-direction: row;
-        justify-content: stretch;
-        align-items: center;
-        font-size: 0.8em;
+footer .team {
+    display: flex;
+    flex-direction: row;
+    justify-content: stretch;
+    align-items: center;
+    font-size: 0.8em;
+}
 
-        span {
-            height: 1.2em;
-            width: 100%;
-        }
+footer .team span {
+    height: 1.2em;
+    width: 100%;
+}
 
-        img {
-            height: 1.6em;
-            width: 8em;
-            object-fit: cover;
-            object-position: inherit;
-        }
-    }
+footer .team img {
+    height: 1.6em;
+    width: 8em;
+    object-fit: cover;
+    object-position: inherit;
 }

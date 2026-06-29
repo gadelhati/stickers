@@ -5,11 +5,31 @@ import { initialCountry } from "../component/country"
 import { initialTeam } from "../component/team"
 import { Deck } from "./Deck"
 import { Album } from "./Album"
+import './Desk.css'
 
 export const Desk = () => {
     const [deck, setDeck] = useState<Character[]>([
         initialCharacter,
-        // ...
+        {
+            id: '002',
+            name: 'Pedro Alves',
+            age: 24,
+            height: 1.82,
+            weight: 78,
+            country: initialCountry,
+            team: { id: '002', name: 'Fluminense', colorOne: '#8B0000', colorTwo: '#228B22' },
+            photo: '',
+        },
+        {
+            id: '003',
+            name: 'Lucas Santos',
+            age: 27,
+            height: 1.75,
+            weight: 72,
+            country: initialCountry,
+            team: { id: '003', name: 'Palmeiras', colorOne: '#006400', colorTwo: '#F5F5F5' },
+            photo: '',
+        },
     ])
 
     const [pages, setPages] = useState<AlbumPage[]>([
@@ -21,6 +41,10 @@ export const Desk = () => {
                     slots: [
                         { expectedId: '001' },
                         { expectedId: '002' },
+                        { expectedId: '003' },
+                        { expectedId: '004' },
+                        { expectedId: '005' },
+                        { expectedId: '006' },
                     ]
                 }
             ]
@@ -29,10 +53,8 @@ export const Desk = () => {
 
     const dropOnSlot = (characterId: string, expectedId: string): void => {
         if (characterId !== expectedId) return
-
         const character = deck.find(c => c.id === characterId)
         if (!character) return
-
         setDeck(prev => prev.filter(c => c.id !== characterId))
         setPages(prev => prev.map(page => ({
             ...page,
@@ -48,9 +70,14 @@ export const Desk = () => {
     }
 
     return (
-        <main className="desk">
-            <Deck characters={deck} />
-            <Album pages={pages} onDrop={dropOnSlot} />
-        </main>
+        <div className="desk-room">
+            <div className="desk">
+                <div className="desk-surface" />
+                <div className="desk-content">
+                    <Deck characters={deck} />
+                    <Album pages={pages} onDrop={dropOnSlot} />
+                </div>
+            </div>
+        </div>
     )
 }

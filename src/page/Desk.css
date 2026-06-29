@@ -1,4 +1,146 @@
-main {
-    display: flex;
-    flex-direction: row;
+/* ═══════════════════════════════════════════════════
+   DESK — Mesa isométrica com perspectiva 3D
+═══════════════════════════════════════════════════ */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: #1a1008;
+  overflow: hidden;
+  height: 100vh;
+  width: 100vw;
+}
+
+#root {
+  width: 100vw;
+  max-width: 100vw;
+  height: 100vh;
+  min-height: 100vh;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  text-align: left;
+}
+
+/* Fundo da sala */
+.desk-room {
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 50% 0%, #3a2010 0%, #1a0e06 50%, #0d0804 100%);
+  z-index: 0;
+}
+
+/* Luz de teto */
+.desk-room::before {
+  content: '';
+  position: absolute;
+  top: -60px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 400px;
+  height: 200px;
+  background: radial-gradient(ellipse, rgba(255,220,140,0.18) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+/* Container isométrico principal */
+.desk {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 0;
+  width: 100%;
+  height: 100vh;
+  padding-top: 60px;
+}
+
+/* Mesa — superfície principal isométrica */
+.desk-surface {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1100px;
+  height: 420px;
+
+  /* Perspectiva isométrica simulada via clip-path e transform */
+  transform:
+    translateX(-50%)
+    perspective(1200px)
+    rotateX(28deg)
+    translateY(60px);
+  transform-origin: center bottom;
+
+  background:
+    /* Grão de madeira — linhas horizontais sutis */
+    repeating-linear-gradient(
+      92deg,
+      transparent 0px,
+      transparent 60px,
+      rgba(0,0,0,0.04) 60px,
+      rgba(0,0,0,0.04) 61px
+    ),
+    repeating-linear-gradient(
+      180deg,
+      transparent 0px,
+      transparent 8px,
+      rgba(255,255,255,0.015) 8px,
+      rgba(255,255,255,0.015) 9px
+    ),
+    linear-gradient(165deg,
+      #6b3e1a 0%,
+      #7c4820 15%,
+      #8b5226 30%,
+      #7a4420 45%,
+      #8c5228 60%,
+      #7b4420 75%,
+      #6e3c1c 100%
+    );
+
+  border-radius: 8px 8px 0 0;
+  box-shadow:
+    0 30px 80px rgba(0,0,0,0.8),
+    0 0 0 1px rgba(255,200,100,0.1),
+    inset 0 1px 0 rgba(255,220,150,0.15);
+}
+
+/* Borda frontal da mesa (face lateral) */
+.desk-surface::after {
+  content: '';
+  position: absolute;
+  bottom: -28px;
+  left: 0;
+  right: 0;
+  height: 28px;
+  background: linear-gradient(180deg, #4a2a0e 0%, #3a1e08 100%);
+  transform: rotateX(90deg);
+  transform-origin: top;
+  border-radius: 0 0 4px 4px;
+}
+
+/* Conteúdo sobre a mesa */
+.desk-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 60px;
+  padding-top: 20px;
+  width: 100%;
+  transform:
+    perspective(1200px)
+    rotateX(15deg)
+    translateY(-10px);
+  transform-style: preserve-3d;
 }

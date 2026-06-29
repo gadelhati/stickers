@@ -1,0 +1,115 @@
+/* ═══════════════════════════════════════════════════
+   DECK — Pilha de figurinhas sobre a mesa
+═══════════════════════════════════════════════════ */
+
+.deck {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    position: relative;
+    flex-shrink: 0;
+}
+
+.deck-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(0,0,0,0.45);
+    border: 1px solid rgba(255,220,150,0.2);
+    border-radius: 20px;
+    padding: 4px 12px 4px 14px;
+    backdrop-filter: blur(6px);
+}
+
+.deck-label-text {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255,220,150,0.7);
+}
+
+.deck-count {
+    background: rgba(255,220,150,0.15);
+    border: 1px solid rgba(255,220,150,0.3);
+    color: rgba(255,220,150,0.9);
+    font-size: 11px;
+    font-weight: 700;
+    border-radius: 10px;
+    padding: 1px 7px;
+    min-width: 22px;
+    text-align: center;
+}
+
+/* Stack container */
+.deck-stack {
+    position: relative;
+    /* A altura é definida pela carta + sombras empilhadas */
+    padding-bottom: 12px;
+    padding-right: 8px;
+}
+
+/* Cartas fantasmas — criam ilusão de pilha */
+.deck-ghost {
+    position: absolute;
+    width: 80px;  /* igual ao --card-w do Sticker */
+    height: calc(80px * 4 / 3);
+    border-radius: 5px;
+    background: linear-gradient(135deg, #b8860b 0%, #8b6508 40%, #7a5506 100%);
+    border: 1px solid rgba(255,200,80,0.25);
+}
+
+.deck-ghost--1 {
+    top: 3px;
+    left: 3px;
+    z-index: 1;
+    background: linear-gradient(135deg, #c49a18 0%, #9a7010 100%);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+}
+.deck-ghost--2 {
+    top: 6px;
+    left: 6px;
+    z-index: 0;
+    background: linear-gradient(135deg, #b8860b 0%, #8b6508 100%);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+}
+.deck-ghost--3 {
+    top: 9px;
+    left: 9px;
+    z-index: -1;
+    background: linear-gradient(135deg, #a07208 0%, #7a5205 100%);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+}
+
+/* Carta do topo */
+.deck-top {
+    position: relative;
+    z-index: 2;
+    /* Elevação leve acima das fantasmas */
+    transform: translateY(-2px);
+    filter: drop-shadow(0 8px 16px rgba(0,0,0,0.5));
+    transition: transform 0.2s ease;
+}
+
+.deck-top:hover {
+    transform: translateY(-6px);
+    filter: drop-shadow(0 14px 24px rgba(0,0,0,0.6));
+}
+
+/* Estado vazio */
+.deck-empty {
+    width: 80px;
+    height: calc(80px * 4 / 3);
+    border-radius: 8px;
+    border: 1.5px dashed rgba(255,200,80,0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255,200,80,0.3);
+    font-size: 9px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 8px;
+}
