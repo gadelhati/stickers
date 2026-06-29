@@ -135,7 +135,7 @@ export const StickerPack = ({ deckRef, onAddToDeck, existingIds }: StickerPackPr
                                 ].join(' ')}
                                 onClick={() => flipCard(idx)}
                             >
-                                <Sticker {...char} interactive containerRef={containerRef} />
+                                <Sticker {...char} interactive={!flipped[idx]} containerRef={containerRef} />
                             </div>
                         ))}
                     </div>

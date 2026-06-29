@@ -33,23 +33,29 @@ export const usePosition = (options: UsePositionOptions = {}) => {
             /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent) ||
             ('ontouchstart' in window)
 
+        const MAX_DEG = 65
+        const clamp = (v: number) => Math.max(-MAX_DEG, Math.min(MAX_DEG, v))
+
         const handleMouse = (event: MouseEvent) => {
-            // Se tiver container, calcula relativo a ele; senão usa window
             if (containerRef?.current) {
                 const rect = containerRef.current.getBoundingClientRect()
                 const x = event.clientX - rect.left
                 const y = event.clientY - rect.top
-                const abscissa = Math.floor((x / rect.width) * 100 - 50)
-                const ordinate = Math.floor((y / rect.height) * 100 - 50)
+                const raw_a = (x / rect.width) * 100 - 50
+                const raw_o = (y / rect.height) * 100 - 50
+                const abscissa = clamp(raw_a * 0.45)
+                const ordinate = clamp(raw_o * 0.45)
                 setMovement({
                     backgroundColor: `rgb(${Math.floor(x % 255)}, ${Math.floor(y % 255)}, 150)`,
-                    transform: `perspective(1000px) rotateY(${abscissa * 0.4}deg) rotateX(${ordinate * -0.4}deg)`,
-                    boxShadow: `${abscissa * -0.4}px ${ordinate * -0.4}px 21px 5px rgba(0,0,0,0.54)`,
+                    transform: `perspective(1000px) rotateY(${abscissa}deg) rotateX(${ordinate * -1}deg)`,
+                    boxShadow: `${abscissa * -1}px ${ordinate * -1}px 21px 5px rgba(0,0,0,0.54)`,
                 })
             } else {
                 const { innerWidth: w, innerHeight: h } = window
-                const abscissa = Math.floor((event.pageX * 100) / w - 50)
-                const ordinate = Math.floor((event.pageY * 100) / h - 50)
+                const raw_a = (event.pageX * 100) / w - 50
+                const raw_o = (event.pageY * 100) / h - 50
+                const abscissa = clamp(raw_a * 0.45)
+                const ordinate = clamp(raw_o * 0.45)
                 setMovement({
                     backgroundColor: `rgb(${event.clientX % 255}, ${event.clientY % 255}, 150)`,
                     transform: `perspective(1000px) rotateY(${abscissa}deg) rotateX(${ordinate * -1}deg)`,
@@ -61,8 +67,8 @@ export const usePosition = (options: UsePositionOptions = {}) => {
         const handleOrientation = (event: DeviceOrientationEvent) => {
             const beta  = Math.max(-45, Math.min(45, event.beta  ?? 0))
             const gamma = Math.max(-45, Math.min(45, event.gamma ?? 0))
-            const abscissa = (gamma / 45) * 50
-            const ordinate = ((beta - 10) / 45) * 50
+            const abscissa = clamp((gamma / 45) * MAX_DEG)
+            const ordinate = clamp(((beta - 10) / 45) * MAX_DEG)
             const r = Math.floor(((gamma + 90) / 180) * 255)
             const g = Math.floor(((beta  + 90) / 180) * 255)
             setMovement({
@@ -76,8 +82,10 @@ export const usePosition = (options: UsePositionOptions = {}) => {
             const touch = event.touches[0]
             if (!touch) return
             const { innerWidth: w, innerHeight: h } = window
-            const abscissa = Math.floor((touch.clientX * 100) / w - 50)
-            const ordinate = Math.floor((touch.clientY * 100) / h - 50)
+            const raw_a = (touch.clientX * 100) / w - 50
+            const raw_o = (touch.clientY * 100) / h - 50
+            const abscissa = clamp(raw_a * 0.45)
+            const ordinate = clamp(raw_o * 0.45)
             setMovement({
                 backgroundColor: `rgb(${Math.floor(touch.clientX % 255)}, ${Math.floor(touch.clientY % 255)}, 150)`,
                 transform: `perspective(1000px) rotateY(${abscissa}deg) rotateX(${ordinate * -1}deg)`,
