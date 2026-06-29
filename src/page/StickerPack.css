@@ -84,10 +84,11 @@
 
 /*
  * pack-card-wrap é o pivot do flip 3D.
- * - Começa com rotateY(180deg) → verso visível
- * - Com --flipped: rotateY(0deg) → frente visível
- * O Sticker interno (card--interactive) tem preserve-3d
- * e as faces com backface-visibility:hidden.
+ * - Começa com rotateY(180deg) → verso visível (frente com opacity:0)
+ * - Com --flipped: rotateY(0deg) → frente visível (verso com opacity:0)
+ * As faces dentro do Sticker alternam opacity via seletores abaixo.
+ * Não usamos backface-visibility nem preserve-3d no card interno
+ * para evitar o bug de face transparente em contextos 3D aninhados.
  */
 .pack-card-wrap {
     transform-style: preserve-3d;
@@ -95,6 +96,12 @@
     transition: transform 0.55s cubic-bezier(0.4, 0, 0.2, 1);
     filter: drop-shadow(0 6px 14px rgba(0,0,0,0.5));
     cursor: pointer;
+}
+
+/* Troca de face: sincronizada com a metade da animação de flip */
+.pack-card-wrap .sticker.front,
+.pack-card-wrap .sticker.back {
+    transition: opacity 0s 0.275s; /* troca instantânea na metade do flip */
 }
 
 .pack-card-wrap:not(.pack-card-wrap--flipped):hover {

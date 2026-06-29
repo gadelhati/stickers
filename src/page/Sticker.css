@@ -22,9 +22,8 @@
     user-select: none;
 }
 
-/* Modo interativo: parallax suave via inline style + preserve-3d para o back */
+/* Modo interativo: parallax suave via inline style — SEM preserve-3d */
 .card--interactive {
-    transform-style: preserve-3d;
     transition:
         transform 0.08s ease-out,
         box-shadow 0.08s ease-out,
@@ -63,15 +62,18 @@
     height: 100%;
 }
 
-/* No modo interativo, as faces usam backface-visibility
-   para o flip funcionar via rotateY no wrapper externo */
-.card--interactive .sticker.front {
-    backface-visibility: hidden;
-}
-.card--interactive .sticker.back {
-    backface-visibility: hidden;
-    transform: rotateY(180deg);
-}
+/* No modo interativo, as faces são controladas pela classe do wrapper externo.
+   O .pack-card-wrap rotaciona o bloco inteiro — não usamos preserve-3d nem
+   backface-visibility (que falham em contextos 3D aninhados).
+   Em vez disso, escondemos/mostramos cada face via opacity conforme o estado. */
+
+/* Verso: visível por padrão (pack começa rotateY 180deg = verso para frente) */
+.pack-card-wrap .sticker.front   { opacity: 0; }
+.pack-card-wrap .sticker.back    { opacity: 1; }
+
+/* Após flip (rotateY 0deg = frente para frente) */
+.pack-card-wrap--flipped .sticker.front  { opacity: 1; }
+.pack-card-wrap--flipped .sticker.back   { opacity: 0; }
 
 /* ── Layout interno da frente ─────────────── */
 header {
