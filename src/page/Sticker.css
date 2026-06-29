@@ -76,12 +76,12 @@ center img {
     position: absolute;
 }
 center .photo {
-    top: 0%;
+    top: -80%;
     left: 10%;
-    height: 80%;
+    height: 275%;
 }
 center .uniform {
-    top: 4%;
+    top: -75%;
     left: 0;
     width: 100%;
 }

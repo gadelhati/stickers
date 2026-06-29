@@ -1,3 +1,4 @@
+import { forwardRef } from 'react'
 import type { Character } from '../component/character'
 import { Sticker } from './Sticker'
 import './Deck.css'
@@ -6,26 +7,21 @@ interface DeckProps {
     characters: Character[]
 }
 
-export const Deck = ({ characters }: DeckProps) => {
+export const Deck = forwardRef<HTMLElement, DeckProps>(({ characters }, ref) => {
+    const ghostCount = Math.min(characters.length - 1, 3)
+
     return (
-        <aside className="deck">
+        <aside className="deck" ref={ref}>
             <div className="deck-label">
                 <span className="deck-label-text">Figurinhas</span>
                 <span className="deck-count">{characters.length}</span>
             </div>
 
             <div className="deck-stack">
-                {/* Cartas fantasmas empilhadas atrás */}
-                {characters.length > 2 && (
-                    <>
-                        <div className="deck-ghost deck-ghost--3" />
-                        <div className="deck-ghost deck-ghost--2" />
-                        <div className="deck-ghost deck-ghost--1" />
-                    </>
-                )}
-                {characters.length > 1 && <div className="deck-ghost deck-ghost--1" />}
+                {Array.from({ length: ghostCount }).map((_, i) => (
+                    <div key={i} className={`deck-ghost deck-ghost--${i + 1}`} />
+                ))}
 
-                {/* Figurinha do topo — interativa */}
                 {characters.length > 0 ? (
                     <div className="deck-top">
                         <Sticker key={characters[0].id} {...characters[0]} />
@@ -38,4 +34,6 @@ export const Deck = ({ characters }: DeckProps) => {
             </div>
         </aside>
     )
-}
+})
+
+Deck.displayName = 'Deck'

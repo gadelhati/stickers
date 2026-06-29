@@ -1,13 +1,16 @@
-import { useState } from "react"
+import { useState, useRef } from "react"
 import { type Character, initialCharacter } from "../component/character"
 import { type AlbumPage } from "../component/album"
 import { initialCountry } from "../component/country"
 import { initialTeam } from "../component/team"
 import { Deck } from "./Deck"
 import { Album } from "./Album"
+import { StickerPack } from "./StickerPack"
 import './Desk.css'
 
 export const Desk = () => {
+    const deckRef = useRef<HTMLElement>(null)
+
     const [deck, setDeck] = useState<Character[]>([
         initialCharacter,
         {
@@ -69,12 +72,26 @@ export const Desk = () => {
         })))
     }
 
+    const addToDeck = (characters: Character[]) => {
+        setDeck(prev => [...prev, ...characters])
+    }
+
+    const existingIds = deck.map(c => c.id)
+
     return (
         <div className="desk-room">
             <div className="desk">
                 <div className="desk-surface" />
                 <div className="desk-content">
-                    <Deck characters={deck} />
+                    {/* Coluna esquerda: deck + pack */}
+                    <div className="desk-left-col">
+                        <Deck ref={deckRef} characters={deck} />
+                        <StickerPack
+                            deckRef={deckRef}
+                            onAddToDeck={addToDeck}
+                            existingIds={existingIds}
+                        />
+                    </div>
                     <Album pages={pages} onDrop={dropOnSlot} />
                 </div>
             </div>
