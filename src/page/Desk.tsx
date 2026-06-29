@@ -83,8 +83,7 @@ export const Desk = () => {
             <div className="desk">
                 <div className="desk-surface" />
                 <div className="desk-content">
-                    {/* Coluna esquerda: deck + pack */}
-                    <div className="desk-left-col">
+                    <div className="desk-top-row">
                         <Deck ref={deckRef} characters={deck} />
                         <StickerPack
                             deckRef={deckRef}
