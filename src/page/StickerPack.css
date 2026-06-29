@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════════════
-   STICKER PACK — Pacote de figurinhas
+   STICKER PACK
 ═══════════════════════════════════════════════════ */
 
 .sticker-pack {
@@ -10,7 +10,7 @@
     position: relative;
 }
 
-/* ── Label ───────────────────────────────────── */
+/* ── Label ── */
 .pack-label {
     background: rgba(0,0,0,0.45);
     border: 1px solid rgba(255,220,150,0.2);
@@ -18,7 +18,6 @@
     padding: 3px 12px;
     backdrop-filter: blur(6px);
 }
-
 .pack-label-text {
     font-size: 9px;
     font-weight: 700;
@@ -27,7 +26,7 @@
     color: rgba(255,220,150,0.7);
 }
 
-/* ── Pacote lacrado ──────────────────────────── */
+/* ── Pacote lacrado ── */
 .pack-sealed {
     all: unset;
     cursor: pointer;
@@ -36,189 +35,127 @@
     align-items: center;
     gap: 8px;
 }
-
 .pack-sealed-visual {
     position: relative;
     width: 72px;
     height: 110px;
     border-radius: 6px;
     overflow: hidden;
-
-    background: linear-gradient(135deg,
-        #1a1a6e 0%,
-        #0d1155 20%,
-        #1a3a8e 40%,
-        #0f2060 60%,
-        #1a1a6e 100%
-    );
-    box-shadow:
-        0 8px 24px rgba(0,0,0,0.6),
-        inset 0 1px 0 rgba(255,255,255,0.1),
-        0 0 0 0.5px rgba(255,220,80,0.3);
-
+    background: linear-gradient(135deg, #1a1a6e 0%, #0d1155 20%, #1a3a8e 40%, #0f2060 60%, #1a1a6e 100%);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.1), 0 0 0 0.5px rgba(255,220,80,0.3);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
-
 .pack-sealed:hover .pack-sealed-visual {
     transform: translateY(-4px) rotate(-1deg);
-    box-shadow:
-        0 14px 32px rgba(0,0,0,0.7),
-        inset 0 1px 0 rgba(255,255,255,0.12),
-        0 0 0 0.5px rgba(255,220,80,0.4);
+    box-shadow: 0 14px 32px rgba(0,0,0,0.7), 0 0 0 0.5px rgba(255,220,80,0.5);
 }
-
-/* Brilho holográfico do pacote */
 .pack-sealed-foil {
-    position: absolute;
-    inset: 0;
-    background: repeating-linear-gradient(
-        45deg,
-        transparent 0px,
-        rgba(255,255,255,0.03) 1px,
-        transparent 2px,
-        transparent 8px
-    );
-    pointer-events: none;
+    position: absolute; inset: 0;
+    background: repeating-linear-gradient(45deg, transparent 0px, rgba(255,255,255,0.03) 1px, transparent 2px, transparent 8px);
 }
-
-/* Faixa rasgável */
 .pack-sealed-strip {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 14px;
+    position: absolute; top: 0; left: 0; right: 0; height: 14px;
     background: rgba(255,220,80,0.25);
     border-bottom: 1px dashed rgba(255,220,80,0.4);
 }
-
 .pack-sealed-logo {
-    position: absolute;
-    top: 50%;
-    left: 50%;
+    position: absolute; top: 50%; left: 50%;
     transform: translate(-50%, -50%);
     font-size: 28px;
     filter: drop-shadow(0 2px 8px rgba(0,0,0,0.4));
 }
-
 .pack-sealed-text {
-    position: absolute;
-    bottom: 10px;
-    left: 0; right: 0;
+    position: absolute; bottom: 10px; left: 0; right: 0;
     text-align: center;
-    font-size: 7px;
-    font-weight: 800;
-    letter-spacing: 0.18em;
-    color: rgba(255,220,80,0.8);
-    text-transform: uppercase;
+    font-size: 7px; font-weight: 800; letter-spacing: 0.18em;
+    color: rgba(255,220,80,0.8); text-transform: uppercase;
 }
-
 .pack-open-hint {
-    font-size: 8px;
-    color: rgba(255,220,150,0.4);
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
+    font-size: 8px; color: rgba(255,220,150,0.4);
+    letter-spacing: 0.06em; text-transform: uppercase;
 }
 
-/* ── Cartas do pacote ────────────────────────── */
+/* ── Cartas reveladas ── */
 .pack-cards {
     display: flex;
     gap: 6px;
     align-items: flex-end;
-    position: relative;
 }
 
-/* Wrapper de cada carta — controla o flip e o voo */
+/*
+ * pack-card-wrap é o pivot do flip 3D.
+ * - Começa com rotateY(180deg) → verso visível
+ * - Com --flipped: rotateY(0deg) → frente visível
+ * O Sticker interno (card--interactive) tem preserve-3d
+ * e as faces com backface-visibility:hidden.
+ */
 .pack-card-wrap {
-    position: relative;
-    cursor: pointer;
-
-    /* Flip 3D: carta começa mostrando o verso (rotateY 180°) */
-    transform: rotateY(180deg);
     transform-style: preserve-3d;
+    transform: rotateY(180deg);
     transition: transform 0.55s cubic-bezier(0.4, 0, 0.2, 1);
     filter: drop-shadow(0 6px 14px rgba(0,0,0,0.5));
+    cursor: pointer;
 }
 
-/* Quando clicada: vira para mostrar a frente (rotateY 0°) */
+.pack-card-wrap:not(.pack-card-wrap--flipped):hover {
+    /* Mantém o rotateY(180deg) e adiciona elevação */
+    transform: rotateY(180deg) translateY(-6px);
+    filter: drop-shadow(0 12px 20px rgba(0,0,0,0.65));
+}
+
 .pack-card-wrap--flipped {
     transform: rotateY(0deg);
     cursor: default;
 }
 
-/* Hover suave enquanto não foi virada */
-.pack-card-wrap:not(.pack-card-wrap--flipped):hover {
-    transform: rotateY(180deg) translateY(-6px);
-    filter: drop-shadow(0 12px 20px rgba(0,0,0,0.65));
-}
-
-/* ── Animação de voo para o deck ─────────────── */
+/* ── Animação de voo ── */
 @keyframes fly-to-deck {
-    0% {
-        transform: rotateY(0deg) scale(1);
-        opacity: 1;
-    }
-    30% {
-        transform: rotateY(0deg) scale(1.08) translateY(-12px);
-        opacity: 1;
-    }
+    0%   { transform: rotateY(0deg) scale(1); opacity: 1; }
+    25%  { transform: rotateY(0deg) scale(1.08) translateY(-12px); opacity: 1; }
     100% {
         transform:
             translateX(var(--fly-dx))
             translateY(var(--fly-dy))
-            scale(0.5)
+            scale(0.45)
             rotateY(0deg);
         opacity: 0;
     }
 }
 
 .pack-card-wrap--flying {
-    animation: fly-to-deck 0.5s cubic-bezier(0.4, 0, 0.6, 1) forwards;
+    animation: fly-to-deck 0.48s cubic-bezier(0.4, 0, 0.6, 1) forwards;
     pointer-events: none;
     z-index: 100;
+    position: relative;
 }
 
-/* ── Ações / botões ──────────────────────────── */
+/* ── Ações ── */
 .pack-actions {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 6px;
     margin-top: 2px;
 }
-
 .pack-hint {
-    font-size: 8px;
-    color: rgba(255,220,150,0.4);
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    text-align: center;
+    font-size: 8px; color: rgba(255,220,150,0.4);
+    letter-spacing: 0.08em; text-transform: uppercase; text-align: center;
     animation: hint-pulse 2s ease-in-out infinite;
 }
-
-@keyframes hint-pulse {
-    0%, 100% { opacity: 0.5; }
-    50% { opacity: 1; }
-}
+@keyframes hint-pulse { 0%, 100% { opacity: 0.5; } 50% { opacity: 1; } }
 
 .pack-btn {
     all: unset;
     cursor: pointer;
     border-radius: 20px;
     padding: 5px 14px;
-    font-size: 9px;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
+    font-size: 9px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
     transition: all 0.15s ease;
 }
-
 .pack-btn--primary {
     background: rgba(255,220,80,0.15);
     border: 1px solid rgba(255,220,80,0.4);
     color: rgba(255,220,80,0.9);
 }
-
 .pack-btn--primary:hover {
     background: rgba(255,220,80,0.25);
     border-color: rgba(255,220,80,0.7);

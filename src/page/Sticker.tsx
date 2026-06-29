@@ -1,4 +1,4 @@
-import { useState, type JSX } from 'react';
+import { type JSX } from 'react';
 import { type Character } from '../component/character';
 import cup from '../assets/logo-cup-white.png';
 import photo from '../assets/gael_photo.png';
@@ -10,40 +10,42 @@ import './Sticker.css';
 import { usePosition } from '../hook/usePosition';
 
 interface StickerProps extends Character {
-    /** Desativa o flip ao clicar (usado no Slot e no StickerPack após revelar) */
-    disableFlip?: boolean
-    /** Desativa o efeito parallax de hover (usado no StickerPack) */
-    disableHover?: boolean
+    /**
+     * Ativa o efeito parallax + flip ao clicar.
+     * Só deve ser true dentro do StickerPack.
+     * Default: false
+     */
+    interactive?: boolean
+    /** Ref do container para calcular posição relativa do mouse */
+    containerRef?: React.RefObject<HTMLElement | null>
 }
 
-export const Sticker = ({ id, name, age, height, weight, country, team, disableFlip, disableHover }: StickerProps): JSX.Element => {
-    const { movement } = usePosition();
-    const [isFlipped, setIsFlipped] = useState(false);
+export const Sticker = ({
+    id, name, age, height, weight, country, team,
+    interactive = false,
+    containerRef,
+}: StickerProps): JSX.Element => {
 
-    const cardStyle = disableHover
-        ? { transform: `rotateY(${isFlipped ? 180 : 0}deg)` }
-        : {
-            ...movement,
-            transform: `${movement.transform} rotateY(${isFlipped ? 180 : 0}deg)`
-        };
+    const { movement } = usePosition({ enabled: interactive, containerRef })
+
+    // Modo interativo: parallax + draggable
+    // Modo passivo: transform neutro, não draggable
+    const cardStyle = interactive
+        ? { ...movement }
+        : { transform: 'none', boxShadow: '0 4px 12px rgba(0,0,0,0.4)' }
 
     const dragstart = (e: React.DragEvent<HTMLDivElement>): void => {
         const target = e.currentTarget as HTMLDivElement
         e.dataTransfer.setData('character-id', target.id)
     }
 
-    const handleClick = () => {
-        if (!disableFlip) setIsFlipped(!isFlipped)
-    }
-
     return (
         <article
             id={id}
             style={cardStyle}
-            className="card"
-            draggable={!disableFlip}
-            onDragStart={disableFlip ? undefined : dragstart}
-            onClick={handleClick}
+            className={`card${interactive ? ' card--interactive' : ''}`}
+            draggable={!interactive}
+            onDragStart={!interactive ? dragstart : undefined}
         >
             <section className="sticker front">
                 <header><img src={cup} alt="Taça 2026" /></header>
@@ -77,7 +79,7 @@ export const Sticker = ({ id, name, age, height, weight, country, team, disableF
                 </footer>
             </section>
 
-            <section className="sticker back" style={{ backgroundColor: movement.backgroundColor }}>
+            <section className="sticker back" style={interactive ? { backgroundColor: movement.backgroundColor } : {}}>
                 <img src={back} alt='Card back image' />
             </section>
         </article>
